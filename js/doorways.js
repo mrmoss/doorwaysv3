@@ -1,45 +1,36 @@
-function doorway_t(div,options)
+function doorway_t(div,title,options)
 {
 	if(!div)
 		return null;
 	this.div=div;
 
-	if(!options)
-		options={};
-	if(!options.title)
-		options.title="";
-	if(!options.pos)
-		options.pos={};
-	if(!options.pos.x)
-		options.pos.x=0;
-	if(!options.pos.y)
-		options.pos.y=0;
-	if(!options.size)
-		options.size={};
-	if(!options.size.w)
-		options.size.w=200;
-	if(!options.size.h)
-		options.size.h=200;
-
 	this.el=document.createElement("div");
 	this.div.appendChild(this.el);
 	this.el.className="jquery_window";
-	this.el.title=options.title;
 
 	var _this=this;
 	$(function()
 	{
-		$(_this.el).dialog(
-		{
+		$(_this.el).dialog
+		({
 			beforeClose:function()
 			{
-				_this.set_minimize(true);
+				_this.set_minimized(true);
 				return false;
+			},
+			dragStop:function(event,ui)
+			{
+				var obj=_this.save();
+				_this.move({x:obj.pos.x,y:obj.pos.y});
 			}
 		});
+		$(_this.el).dialog().dialog("widget").
+			draggable("option","containment",false);
+		$(_this.el).dialog().dialog("widget").
+			resizable("option","containment",false);
 	});
-	this.resize(options.size);
-	this.move(options.pos);
+	this.load(options);
+	this.set_title(title);
 }
 
 doorway_t.prototype.move=function(pos)
@@ -50,9 +41,9 @@ doorway_t.prototype.move=function(pos)
 	$(function()
 	{
 		if(pos.x==0||pos.x)
-			$(_this.el).dialog("widget")[0].style.left=pos.x+"px";
+			$(_this.el).dialog("widget")[0].style.left=Math.max(0,pos.x)+"px";
 		if(pos.y==0||pos.y)
-			$(_this.el).dialog("widget")[0].style.top=pos.y+"px";
+			$(_this.el).dialog("widget")[0].style.top=Math.max(0,pos.y)+"px";
 	});
 }
 
@@ -90,11 +81,41 @@ doorway_t.prototype.save=function()
 	return data;
 }
 
-doorway_t.prototype.set_minimize=function(minimize)
+doorway_t.prototype.load=function(data)
+{
+	if(!data)
+		data={};
+	if(!data.pos)
+		data.pos={};
+	if(!data.pos.x)
+		data.pos.x=0;
+	if(!data.pos.y)
+		data.pos.y=0;
+	if(!data.size)
+		data.size={};
+	if(!data.size.w)
+		data.size.w=200;
+	if(!data.size.h)
+		data.size.h=200;
+	if(!data.minimized)
+		data.minimized=false;
+	this.resize(data.size);
+	this.move(data.pos);
+	this.set_minimized(data.minimized);
+}
+
+doorway_t.prototype.set_minimized=function(minimize)
 {
 	var _this=this;
 	if(minimize)
 		$(this.el)[0].offsetParent.style.visibility="hidden";
 	else
 		$(this.el)[0].offsetParent.style.visibility="visible";
+}
+
+doorway_t.prototype.set_title=function(title)
+{
+	if(!title)
+		title="";
+	this.el.title=title;
 }
