@@ -24,10 +24,10 @@ function doorway_t(div,title,options)
 				_this.move({x:obj.pos.x,y:obj.pos.y});
 			}
 		});
-		$(_this.el).dialog().dialog("widget").
+		/*$(_this.el).dialog().dialog("widget").
 			draggable("option","containment",false);
 		$(_this.el).dialog().dialog("widget").
-			resizable("option","containment",false);
+			resizable("option","containment",false);*/
 	});
 	this.load(options);
 	this.set_title(title);
