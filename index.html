@@ -1,0 +1,62 @@
+<html>
+<head>
+	<style>
+		html,head,body,.fill
+		{
+			margin:0px;
+			padding:0px;
+			width:100%;
+			height:100%;
+		}
+	</style>
+	<link rel="stylesheet" href="css/jquery-ui.css">
+	<link rel="stylesheet" href="css/style.css">
+
+	<button id="toggle">External Toggle</button>
+	<div id="content" style="fill"></div>
+
+	<script src="js/jquery-1.12.4.js"></script>
+	<script src="js/jquery-ui.js"></script>
+	<script src="js/doorways.js"></script>
+	<script>
+		var windows=[];
+		var toggle=document.getElementById("toggle");
+		toggle.addEventListener("click",function()
+		{
+			windows[0].set_minimize(!windows[0].save().minimized);
+		});
+		var content=document.getElementById("content");
+
+		windows[0]=new doorway_t(content,
+		{
+			title:"Test",
+			size:
+			{
+				w:300,
+				h:200
+			},
+			pos:
+			{
+				x:0,
+				y:100
+			}
+		});
+		windows[1]=new doorway_t(content,
+		{
+			title:"Test2",
+			size:
+			{
+				w:200,
+				h:200
+			},
+			pos:
+			{
+				x:308,
+				y:100
+			}
+		});
+	</script>
+</head>
+<body>
+</body>
+</html>
