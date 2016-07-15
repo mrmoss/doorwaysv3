@@ -1,57 +1,61 @@
 <html>
-<head>
-	<link rel="stylesheet" href="css/jquery-ui.css">
-	<link rel="stylesheet" href="css/style.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
+	<meta name="HandheldFriendly" content="true" />
+	<head>
+		<link rel="stylesheet" href="css/jquery-ui.min.css">
+		<link rel="stylesheet" href="css/style.css">
 
-	<button id="toggle">External Toggle</button>
-	<div id="content" style="fill"></div>
+		<button id="toggle">External Toggle</button>
+		<div id="content" style="fill"></div>
 
-	<script src="js/jquery-1.12.4.js"></script>
-	<script src="js/jquery-ui.js"></script>
-	<script src="js/jquery.ui.touch-punch.min.js"></script>
-	<script src="js/doorways.js"></script>
-	<script>
-		var windows=[];
-		var toggle=document.getElementById("toggle");
-		toggle.addEventListener("click",function()
-		{
-			windows[0].set_minimized(!windows[0].save().minimized);
-		});
-		var content=document.getElementById("content");
-
-		windows[0]=new doorway_t(content,"Test",
-		{
-			size:
+		<script src="js/jquery-3.1.0.min.js"></script>
+		<script src="js/jquery-ui.min.js"></script>
+		<script src="js/jquery.ui.touch-punch.min.js"></script>
+		<script src="js/doorways.js"></script>
+		<script>
+			var windows=[];
+			var toggle=document.getElementById("toggle");
+			toggle.addEventListener("click",function()
 			{
-				w:300,
-				h:200
-			},
-			pos:
+				windows[0].set_minimized(!windows[0].save().minimized);
+			});
+			var content=document.getElementById("content");
+
+			windows[0]=new doorway_t(content,
 			{
-				x:0,
-				y:100
+				title:"Test",
+				size:
+				{
+					w:300,
+					h:200
+				},
+				pos:
+				{
+					x:0,
+					y:100
+				}
+			});
+			windows[1]=new doorway_t(content,
+			{
+				title:"Test2",
+				size:
+				{
+					w:100,
+					h:200
+				},
+				pos:
+				{
+					x:308,
+					y:100
+				}
+			});
+
+			function show(data)
+			{
+				windows[0].el.innerHTML=data;
 			}
-		});
-		windows[1]=new doorway_t(content,"Test2",
-		{
-			size:
-			{
-				w:200,
-				h:200
-			},
-			pos:
-			{
-				x:308,
-				y:100
-			}
-		});
-
-		function show(data)
-		{
-			windows[0].el.innerHTML=data;
-		}
-	</script>
-</head>
-<body>
-</body>
+		</script>
+	</head>
+	<body>
+	</body>
 </html>

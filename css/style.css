@@ -10,5 +10,13 @@ html,head,body
 {
 	background-color:rgb(50,120,200);
 	color:rgb(255,255,255);
+	-webkit-user-select:none;
+	-moz-user-select:none;
+	-ms-user-select:none;
+}
+
+.ui-dialog-titlebar-close
+{
+	z-index:9999;
 }
 
