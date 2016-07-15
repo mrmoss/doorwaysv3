@@ -1,12 +1,11 @@
 <html>
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
-	<meta name="HandheldFriendly" content="true" />
+	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0"/>
+	<meta name="HandheldFriendly" content="true"/>
 	<head>
 		<link rel="stylesheet" href="css/jquery-ui.min.css">
 		<link rel="stylesheet" href="css/style.css">
 
 		<button id="toggle">External Toggle</button>
-		<div id="content" style="fill"></div>
 
 		<script src="js/jquery-3.1.0.min.js"></script>
 		<script src="js/jquery-ui.min.js"></script>
@@ -19,10 +18,9 @@
 			{
 				windows[0].set_minimized(!windows[0].save().minimized);
 			});
-			var content=document.getElementById("content");
 
-			windows[0]=new doorway_t(content,
-			{
+			windows[0]=new doorway_t
+			({
 				title:"Test",
 				size:
 				{
@@ -35,12 +33,12 @@
 					y:100
 				}
 			});
-			windows[1]=new doorway_t(content,
-			{
+			windows[1]=new doorway_t
+			({
 				title:"Test2",
 				size:
 				{
-					w:100,
+					w:200,
 					h:200
 				},
 				pos:
@@ -49,11 +47,6 @@
 					y:100
 				}
 			});
-
-			function show(data)
-			{
-				windows[0].el.innerHTML=data;
-			}
 		</script>
 	</head>
 	<body>

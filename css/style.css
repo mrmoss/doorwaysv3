@@ -1,11 +1,4 @@
-html,head,body
-{
-	margin:0px;
-	padding:0px;
-	width:100%;
-	height:100%;
-}
-
+/*UI blue color and no select.*/
 .ui-dialog-titlebar
 {
 	background-color:rgb(50,120,200);
@@ -15,8 +8,18 @@ html,head,body
 	-ms-user-select:none;
 }
 
-.ui-dialog-titlebar-close
+/*Make UI resizers bigger.*/
+.ui-resizable-n,.ui-resizable-s,.ui-resizable-ne,.ui-resizable-se,.ui-resizable-sw,.ui-resizable-nw
 {
-	z-index:9999;
+	height:12px !important;
+}
+.ui-resizable-e,.ui-resizable-w,.ui-resizable-se,.ui-resizable-sw,.ui-resizable-nw
+{
+	width:12px !important;
 }
 
+/*Hack to get rid of bottom right drag icon on UI.*/
+.ui-icon-gripsmall-diagonal-se
+{
+	opacity:0;
+}
